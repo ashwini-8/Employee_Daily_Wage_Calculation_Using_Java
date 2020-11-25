@@ -17,6 +17,7 @@ public class EmployeeWageProblem {
 		Random generaterandom = new Random();
 		int randomNumber = generaterandom.nextInt(3);
 		System.out.println("Random number generated :" + randomNumber);
+
 		switch (randomNumber) {
 		case 1:
 			System.out.println("employee is full-time");
