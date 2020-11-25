@@ -15,7 +15,12 @@ public class EmployeeWageProblem {
 		int ratePerHour = 20;
 		int empHour = 0;
 		int NUM_WORKING_DAYS = 20;
-		for (int i = 0; i <= NUM_WORKING_DAYS; i++) {
+		int MAX_HRS_IN_MONTH = 100;
+		int totalEmpHrs = 0;
+		int totalWorkingDays = 0;
+		while (totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NUM_WORKING_DAYS) {
+			totalWorkingDays++;
+			totalEmpHrs++;
 			Random generaterandom = new Random();
 			int randomNumber = generaterandom.nextInt(2);
 			System.out.println("Random number generated :" + randomNumber);
@@ -37,7 +42,6 @@ public class EmployeeWageProblem {
 				System.out.println("employee is absent");
 				return;
 			}
-
 		}
 
 	}
