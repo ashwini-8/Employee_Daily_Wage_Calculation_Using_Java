@@ -1,51 +1,65 @@
 package employeewageusecase;
 
-import java.util.Random;
-
 public class EmployeeWageProblem {
 
 	/*
-	 * uc7 This code is to check part-time and full-time employee's daily wage for a
-	 * month using methods
+	 * uc8 This code is to check Compute Employee Wage for multiple companies
 	 */
-	public void empWage() {
-		int ratePerHour = 20;
-		int empHour = 0;
-		int NUM_WORKING_DAYS = 20;
-		int MAX_HRS_IN_MONTH = 100;
-		int totalEmpHrs = 0;
-		int totalWorkingDays = 0;
-		while (totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NUM_WORKING_DAYS) {
-			totalWorkingDays++;
-			totalEmpHrs++;
-			Random generaterandom = new Random();
-			int randomNumber = generaterandom.nextInt(2);
-			System.out.println("Random number generated :" + randomNumber);
 
-			switch (randomNumber) {
-			case 0:
-				System.out.println("employee is full-time");
-				empHour = 8;
-				int salary = (empHour * ratePerHour);
-				System.out.println("salary is :" + salary);
+	public static final int IS_FULL_TIME = 1;
+	public static final int IS_PART_TIME = 2;
+	private final String Company;
+	private final int empRatePerHour;
+	private final int numOfWorkingDays;
+	private final int maxHoursPerMonth;
+
+	EmployeeWageProblem(String Company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+
+		this.Company = Company;
+		this.empRatePerHour = empRatePerHour;
+		this.numOfWorkingDays = numOfWorkingDays;
+		this.maxHoursPerMonth = maxHoursPerMonth;
+
+	}
+
+	private int computeEmpWage() {
+
+		int empHrs = 0;
+		int empWage = 0;
+		int TotalEmpWage = 0;
+		int TotalWorkingHours = 0;
+		int day = 0;
+
+		while (day < numOfWorkingDays || TotalWorkingHours <= maxHoursPerMonth)
+
+		{
+			double empCheck = Math.floor(Math.random() * 10 % 3);
+			day++;
+			switch ((int) empCheck) {
+			case IS_FULL_TIME:
+				empHrs = 8;
 				break;
-			case 1:
-				System.out.println("employee is part-time");
-				empHour = 4;
-				int salary1 = (empHour * ratePerHour);
-				System.out.println("salary is :" + salary1);
+			case IS_PART_TIME:
+				empHrs = 4;
 				break;
 			default:
-				System.out.println("employee is absent");
-			}
+				empHrs = 0;
 
+			}
+			TotalWorkingHours += empHrs;
+			empWage = empHrs * empRatePerHour;
+			TotalEmpWage += empWage;
 		}
+		// System.out.println("Total Emp wage :"+ TotalEmpWage);
+		return TotalEmpWage;
+
 	}
 
 	public static void main(String[] args) {
-		// start
-		System.out.println("Welcome to Employee Wage Computation Program");
-		EmployeeWageProblem e = new EmployeeWageProblem();
-		e.empWage();
+		EmployeeWageProblem dMart = new EmployeeWageProblem("Dmart", 20, 20, 100);
+		EmployeeWageProblem Reliance = new EmployeeWageProblem("Reliance", 30, 20, 80);
+		System.out.println("Total Emp wage of Reliance : " + Reliance.computeEmpWage());
+		System.out.println("Total Emp wage of dMart : " + dMart.computeEmpWage());
 	}
+
 }
