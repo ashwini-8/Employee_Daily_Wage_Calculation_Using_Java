@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class EmployeeWageBuilderArray implements IComputeEmpWage {
+
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
 
@@ -52,6 +53,7 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 			totalWorkingDays++;
 
 			int empCheck = random.nextInt(3);
+			// (int) Math.floor(Math.random() * 10)%3;
 			switch (empCheck) {
 			case IS_PART_TIME:
 				empHrs = 4;
@@ -64,8 +66,7 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 				empHrs = 0;
 			}
 			totalEmpHrs += empHrs;
-			System.out.println("day: " + totalWorkingDays + "EmpHrs: " + empHrs + "     " + "Daily wage"
-					+ (empHrs * totalWorkingDays));
+			System.out.println("day: " + totalWorkingDays + "EmpHrs: " + empHrs);
 		}
 
 		return totalEmpHrs * companyEmpWage.empRatePerHour;
@@ -83,5 +84,4 @@ public class EmployeeWageBuilderArray implements IComputeEmpWage {
 		return companyEmpWageMap.get(company).totalEmpWage;
 
 	}
-
 }
